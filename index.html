@@ -409,7 +409,7 @@ button,input,select{font:inherit;color:inherit}
     </div>
   </div>
 
-  </div><ul aria-label="Six panels" data-reveal="300" style="list-style: none; margin: {{ pillTop }} auto 0; padding: {{ pillSidePad }}; box-sizing: border-box; display: flex; flex-wrap: nowrap; gap: {{ pillGap }}; justify-content: {{ pillJustify }}; width: 100%; max-width: 1240px; height: 42px; align-items: center">
+  <ul aria-label="Six panels" data-reveal="300" style="list-style: none; margin: {{ pillTop }} auto 0; padding: {{ pillSidePad }}; box-sizing: border-box; display: flex; flex-wrap: nowrap; gap: {{ pillGap }}; justify-content: {{ pillJustify }}; width: 100%; max-width: 1240px; height: 42px; align-items: center">
         <sc-for list="{{ heroPills }}" as="pp" hint-placeholder-count="6"><li style="flex:0 1 auto;min-width:0;display:inline-flex;align-items:center;gap:{{ pillDotGap }};padding:{{ pillPad }};border-radius:999px;background:{{ pp.bg }};border:1px solid {{ pp.bd }};color:{{ pp.fg }};font-size:{{ pillFs }};font-weight:700;white-space:nowrap;cursor:default;user-select:none"><span aria-hidden="true" style="flex:none;width:{{ pillDot }};height:{{ pillDot }};border-radius:50%;background:{{ pp.c }}"></span>{{ pp.t }}</li></sc-for>
       </ul>
 </section>
