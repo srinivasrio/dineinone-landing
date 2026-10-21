@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up — Dine in One · AI Restaurant Operating System</title>
+  <meta name="description" content="Create your Dine in One owner account to get started with your restaurant management workspace.">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..24,400,0..1,0&display=block" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      background-color: #FBF9F7;
+      color: #222125;
+      font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color 0.15s ease; }
+    a:hover { color: #C2412D; }
+
+    .brand-font {
+      font-family: 'Archivo', sans-serif;
+      font-stretch: 115%;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Top navigation bar */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #5E5A60;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { color: #C2412D; transform: translateX(-2px); }
+    .badge-tag {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8C8684;
+      background: #F1ECE7;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    /* Brand Header */
+    .brand-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .brand-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #222125;
+      display: inline-block;
+    }
+    .brand-gradient {
+      background: linear-gradient(100deg, #FF6F61, #FF8A4C);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: #FF6F61;
+    }
+    .brand-sub {
+      font-size: 12.5px;
+      color: #5E5A60;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* Main Card */
+    .auth-card {
+      background: #FFFFFF;
+      border: 1px solid #EFE9E3;
+      border-radius: 24px;
+      box-shadow: 0 20px 48px -12px rgba(34, 33, 37, 0.08);
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 440px) {
+      .auth-card { padding: 24px 20px; }
+    }
+
+    /* Section Headings inside Card */
+    .card-head { text-align: center; margin-bottom: 22px; }
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background: #FFEDE8;
+      color: #B23A26;
+      border: 1px solid #FFD8CE;
+      margin-bottom: 8px;
+    }
+    .step-pill .icon { font-size: 14px; }
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #222125;
+      letter-spacing: -0.01em;
+    }
+    .card-sub {
+      font-size: 12.5px;
+      color: #5E5A60;
+      margin-top: 4px;
+    }
+
+    /* Error alert box */
+    .alert-box {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-size: 12.5px;
+      margin-bottom: 18px;
+    }
+    .alert-box.error {
+      display: flex;
+      background: #FFF0ED;
+      border: 1px solid #FFD5CD;
+      color: #B23A26;
+    }
+    .alert-box.success {
+      display: flex;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      color: #166534;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #5E5A60;
+      margin-bottom: 6px;
+    }
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      color: #8C8684;
+      font-size: 19px;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .phone-prefix {
+      position: absolute;
+      left: 36px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #5E5A60;
+      pointer-events: none;
+    }
+    .text-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 14px 0 38px;
+      background: #FCFAF8;
+      border: 1px solid #E5DFD7;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #222125;
+      transition: all 0.2s;
+    }
+    .text-input.phone-input {
+      padding-left: 64px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      letter-spacing: 0.5px;
+    }
+    .text-input:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: #C2412D;
+      box-shadow: 0 0 0 3px rgba(194, 65, 45, 0.12);
+    }
+    .text-input::placeholder { color: #A59E99; }
+
+    .toggle-pw-btn {
+      position: absolute;
+      right: 8px;
+      background: none;
+      border: none;
+      padding: 6px;
+      cursor: pointer;
+      color: #8C8684;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+    }
+    .toggle-pw-btn:hover { color: #222125; }
+
+    /* Password strength */
+    .strength-wrap {
+      margin-top: 6px;
+      display: none;
+    }
+    .strength-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .strength-bar-bg {
+      height: 5px;
+      width: 100%;
+      background: #EFE9E3;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .strength-bar-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease, background-color 0.3s ease;
+      border-radius: 999px;
+    }
+
+    /* Terms */
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 16px 0 18px;
+    }
+    .terms-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: #C2412D;
+      cursor: pointer;
+    }
+    .terms-text {
+      font-size: 12px;
+      color: #5E5A60;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .terms-text strong { color: #222125; }
+
+    /* Primary CTA Button */
+    .btn-submit {
+      width: 100%;
+      height: 48px;
+      background: #222125;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 999px;
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(34, 33, 37, 0.15);
+      transition: all 0.2s;
+    }
+    .btn-submit:hover {
+      background: #3D3A40;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(34, 33, 37, 0.2);
+    }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #FFFFFF;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Card Footer Switch link */
+    .switch-link {
+      text-align: center;
+      font-size: 12.5px;
+      color: #5E5A60;
+      margin-top: 20px;
+    }
+    .switch-link a {
+      color: #C2412D;
+      font-weight: 700;
+      margin-left: 3px;
+    }
+    .switch-link a:hover { text-decoration: underline; }
+
+    /* Bottom Trust Tag */
+    .trust-tag {
+      text-align: center;
+      font-size: 11.5px;
+      color: #8C8684;
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+    .trust-tag .icon { font-size: 16px; color: #16A34A; }
+
+    /* OTP Screen specifics */
+    .otp-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 24px 0 20px;
+    }
+    .otp-input {
+      width: 48px;
+      height: 56px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      background: #FCFAF8;
+      border: 1px solid #E5DFD7;
+      border-radius: 12px;
+      color: #222125;
+      transition: all 0.2s;
+    }
+    @media (max-width: 400px) {
+      .otp-input { width: 42px; height: 50px; font-size: 19px; }
+      .otp-row { gap: 6px; }
+    }
+    .otp-input:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: #C2412D;
+      box-shadow: 0 0 0 3px rgba(194, 65, 45, 0.12);
+    }
+    .otp-icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: #FFEDE8;
+      border: 1px solid #FFD8CE;
+      color: #C2412D;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 12px;
+    }
+    .otp-icon-circle .icon { font-size: 26px; }
+
+    .resend-box {
+      text-align: center;
+      font-size: 12.5px;
+      color: #5E5A60;
+      margin-top: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .resend-btn {
+      background: none;
+      border: none;
+      color: #C2412D;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12.5px;
+    }
+    .resend-btn:hover { text-decoration: underline; }
+    .resend-btn:disabled { color: #8C8684; cursor: not-allowed; text-decoration: none; }
+
+    /* Success screen specifics */
+    .success-icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      color: #16A34A;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 16px;
+      animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .success-icon-circle .icon { font-size: 34px; }
+    @keyframes pop { 0% { transform: scale(0.6); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+    /* Steps visibility */
+    .step-section { display: none; }
+    .step-section.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Top Nav Back Link -->
+    <div class="top-nav">
+      <a href="/" class="back-btn">
+        <span class="material-symbols-rounded" style="font-size: 18px;">arrow_back</span>
+        Back to Home
+      </a>
+      <span class="badge-tag">Restaurant OS</span>
+    </div>
+
+    <!-- Brand Header -->
+    <div class="brand-header">
+      <a href="/" class="brand-title brand-font">
+        Dine <span class="brand-gradient">in</span> One
+      </a>
+      <p class="brand-sub">AI Restaurant Operating System</p>
+    </div>
+
+    <!-- Authentication Card -->
+    <div class="auth-card">
+
+      <!-- ======================================================== -->
+      <!-- STEP 1: OWNER REGISTRATION FORM                         -->
+      <!-- ======================================================== -->
+      <section id="step-register" class="step-section active">
+        <div class="card-head">
+          <div class="step-pill">
+            <span class="material-symbols-rounded icon">auto_awesome</span>
+            Owner Registration
+          </div>
+          <h1 class="card-title brand-font">Create Your Account</h1>
+          <p class="card-sub">Sign up to manage your restaurant in one unified system</p>
+        </div>
+
+        <!-- Alert Notification -->
+        <div id="register-alert" class="alert-box error" role="alert">
+          <span class="material-symbols-rounded" style="font-size: 18px;">error</span>
+          <span id="register-alert-text">Error message</span>
+        </div>
+
+        <form id="register-form" novalidate>
+          <!-- Full Name -->
+          <div class="form-group">
+            <label class="form-label" for="reg-fullname">Full Name</label>
+            <div class="input-wrap">
+              <span class="material-symbols-rounded input-icon">person</span>
+              <input type="text" id="reg-fullname" class="text-input" placeholder="e.g. Rahul Sharma" autocomplete="name" required>
+            </div>
+          </div>
+
+          <!-- Restaurant Name -->
+          <div class="form-group">
+            <label class="form-label" for="reg-restaurant">Restaurant / Business Name</label>
+            <div class="input-wrap">
+              <span class="material-symbols-rounded input-icon">storefront</span>
+              <input type="text" id="reg-restaurant" class="text-input" placeholder="e.g. Spice Route Kitchen" autocomplete="organization" required>
+            </div>
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Email Address</label>
+            <div class="input-wrap">
+              <span class="material-symbols-rounded input-icon">mail</span>
+              <input type="email" id="reg-email" class="text-input" placeholder="owner@yourrestaurant.com" autocomplete="email" required>
+            </div>
+          </div>
+
+          <!-- Mobile Number (+91) -->
+          <div class="form-group">
+            <label class="form-label" for="reg-phone">Mobile Number</label>
+            <div class="input-wrap">
+              <span class="material-symbols-rounded input-icon">phone_android</span>
+              <span class="phone-prefix">+91</span>
+              <input type="tel" id="reg-phone" class="text-input phone-input" placeholder="98765 43210" maxlength="10" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password</label>
+            <div class="input-wrap">
+              <span class="material-symbols-rounded input-icon">lock</span>
+              <input type="password" id="reg-password" class="text-input" placeholder="Minimum 8 characters" autocomplete="new-password" required>
+              <button type="button" class="toggle-pw-btn" data-target="reg-password" aria-label="Toggle password visibility">
+                <span class="material-symbols-rounded" style="font-size: 19px;">visibility</span>
+              </button>
+            </div>
+            <!-- Strength Indicator -->
+            <div id="strength-container" class="strength-wrap">
+              <div class="strength-head">
+                <span style="color: #8C8684;">Password strength:</span>
+                <span id="strength-label" style="color: #C2412D;">Weak</span>
+              </div>
+              <div class="strength-bar-bg">
+                <div id="strength-fill" class="strength-bar-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label class="form-label" for="reg-confirm">Confirm Password</label>
+            <div class="input-wrap">
+              <span class="material-symbols-rounded input-icon">lock</span>
+              <input type="password" id="reg-confirm" class="text-input" placeholder="Re-enter your password" autocomplete="new-password" required>
+              <button type="button" class="toggle-pw-btn" data-target="reg-confirm" aria-label="Toggle confirm password visibility">
+                <span class="material-symbols-rounded" style="font-size: 19px;">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Terms Checkbox -->
+          <div class="terms-row">
+            <input type="checkbox" id="reg-terms" checked required>
+            <label for="reg-terms" class="terms-text">
+              I agree to the <strong>Terms of Service</strong> and <strong>Privacy Policy</strong>.
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="btn-create-account" class="btn-submit">
+            <span class="btn-spinner" id="reg-spinner"></span>
+            <span id="btn-create-account-text">Create Account</span>
+            <span class="material-symbols-rounded" id="reg-arrow" style="font-size: 18px;">arrow_forward</span>
+          </button>
+        </form>
+
+        <div class="switch-link">
+          Already have an account? <a href="https://app.dineinone.com/login">Log In</a>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- STEP 2: 6-DIGIT EMAIL OTP VERIFICATION SCREEN           -->
+      <!-- ======================================================== -->
+      <section id="step-verify" class="step-section">
+        <button type="button" id="btn-back-to-details" class="back-btn" style="margin-bottom: 16px;">
+          <span class="material-symbols-rounded" style="font-size: 16px;">arrow_back</span>
+          Back to details
+        </button>
+
+        <div class="card-head">
+          <div class="otp-icon-circle">
+            <span class="material-symbols-rounded icon">mark_email_unread</span>
+          </div>
+          <h2 class="card-title brand-font">Verify Your Email</h2>
+          <p class="card-sub">
+            We sent a 6-digit confirmation code to<br>
+            <strong id="display-verify-email" style="color: #222125; font-weight: 700;"></strong>
+          </p>
+        </div>
+
+        <!-- Alert Notification -->
+        <div id="verify-alert" class="alert-box error" role="alert">
+          <span class="material-symbols-rounded" style="font-size: 18px;">error</span>
+          <span id="verify-alert-text">Error message</span>
+        </div>
+
+        <form id="otp-form" novalidate>
+          <div class="otp-row">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-index="0" autofocus>
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-index="1">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-index="2">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-index="3">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-index="4">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-index="5">
+          </div>
+
+          <button type="submit" id="btn-verify-otp" class="btn-submit">
+            <span class="btn-spinner" id="verify-spinner"></span>
+            <span id="btn-verify-otp-text">Verify & Complete Registration</span>
+            <span class="material-symbols-rounded" id="verify-arrow" style="font-size: 18px;">check</span>
+          </button>
+        </form>
+
+        <div class="resend-box">
+          <span>Didn't receive the verification code?</span>
+          <span id="resend-cooldown-text" style="font-size: 12px; font-weight: 600; color: #8C8684; display: inline-flex; align-items: center; gap: 4px;">
+            <span class="material-symbols-rounded" style="font-size: 15px;">schedule</span>
+            Resend available in <strong id="resend-timer-seconds">60</strong>s
+          </span>
+          <button type="button" id="btn-resend-otp" class="resend-btn" style="display: none;">
+            <span class="material-symbols-rounded" style="font-size: 16px;">refresh</span>
+            Resend Verification Code
+          </button>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- STEP 3: CELEBRATION / SUCCESS SCREEN                    -->
+      <!-- ======================================================== -->
+      <section id="step-success" class="step-section">
+        <div style="text-align: center; padding: 16px 0;">
+          <div class="success-icon-circle">
+            <span class="material-symbols-rounded icon">check_circle</span>
+          </div>
+          <h2 class="card-title brand-font" style="margin-bottom: 8px;">Account Verified! 🎉</h2>
+          <p class="card-sub" style="max-width: 320px; margin: 0 auto 24px; line-height: 1.55;">
+            Welcome to Dine in One. Your owner account is registered and ready.
+          </p>
+
+          <a href="https://app.dineinone.com/login" class="btn-submit" style="display: inline-flex; width: 100%; text-decoration: none;">
+            <span>Go to Owner Dashboard</span>
+            <span class="material-symbols-rounded" style="font-size: 18px;">arrow_forward</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Trust Isolation Footer Tag -->
+    <div class="trust-tag">
+      <span class="material-symbols-rounded icon">verified_user</span>
+      End-to-end cryptographic tenant security active
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Elements
+      var stepRegister = document.getElementById('step-register');
+      var stepVerify = document.getElementById('step-verify');
+      var stepSuccess = document.getElementById('step-success');
+
+      var registerForm = document.getElementById('register-form');
+      var regAlert = document.getElementById('register-alert');
+      var regAlertText = document.getElementById('register-alert-text');
+      var btnCreate = document.getElementById('btn-create-account');
+      var regSpinner = document.getElementById('reg-spinner');
+      var regArrow = document.getElementById('reg-arrow');
+      var btnCreateText = document.getElementById('btn-create-account-text');
+
+      var inputFullName = document.getElementById('reg-fullname');
+      var inputRestaurant = document.getElementById('reg-restaurant');
+      var inputEmail = document.getElementById('reg-email');
+      var inputPhone = document.getElementById('reg-phone');
+      var inputPassword = document.getElementById('reg-password');
+      var inputConfirm = document.getElementById('reg-confirm');
+      var inputTerms = document.getElementById('reg-terms');
+
+      var strengthContainer = document.getElementById('strength-container');
+      var strengthLabel = document.getElementById('strength-label');
+      var strengthFill = document.getElementById('strength-fill');
+
+      var otpForm = document.getElementById('otp-form');
+      var otpInputs = Array.from(document.querySelectorAll('.otp-input'));
+      var verifyAlert = document.getElementById('verify-alert');
+      var verifyAlertText = document.getElementById('verify-alert-text');
+      var btnVerify = document.getElementById('btn-verify-otp');
+      var verifySpinner = document.getElementById('verify-spinner');
+      var verifyArrow = document.getElementById('verify-arrow');
+      var btnVerifyText = document.getElementById('btn-verify-otp-text');
+      var displayVerifyEmail = document.getElementById('display-verify-email');
+      var btnBack = document.getElementById('btn-back-to-details');
+
+      var resendCooldownText = document.getElementById('resend-cooldown-text');
+      var resendTimerSeconds = document.getElementById('resend-timer-seconds');
+      var btnResendOtp = document.getElementById('btn-resend-otp');
+
+      var currentEmail = '';
+      var currentCooldown = 60;
+      var cooldownInterval = null;
+
+      // Toggle Password Visibility
+      document.querySelectorAll('.toggle-pw-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetId = btn.getAttribute('data-target');
+          var input = document.getElementById(targetId);
+          var icon = btn.querySelector('.material-symbols-rounded');
+          if (input.type === 'password') {
+            input.type = 'text';
+            icon.textContent = 'visibility_off';
+          } else {
+            input.type = 'password';
+            icon.textContent = 'visibility';
+          }
+        });
+      });
+
+      // Password Strength Calculator
+      function calculateStrength(pw) {
+        if (!pw) return { pct: 0, label: '', color: '' };
+        var score = 0;
+        if (pw.length >= 8) score++;
+        if (pw.length >= 12) score++;
+        if (/[A-Z]/.test(pw)) score++;
+        if (/[0-9]/.test(pw)) score++;
+        if (/[^A-Za-z0-9]/.test(pw)) score++;
+
+        if (score <= 2) return { pct: 33, label: 'Weak', color: '#C2412D' };
+        if (score <= 3) return { pct: 66, label: 'Fair', color: '#E9A23B' };
+        return { pct: 100, label: 'Strong', color: '#16A34A' };
+      }
+
+      inputPassword.addEventListener('input', function () {
+        var val = inputPassword.value;
+        if (!val) {
+          strengthContainer.style.display = 'none';
+          return;
+        }
+        strengthContainer.style.display = 'block';
+        var str = calculateStrength(val);
+        strengthLabel.textContent = str.label;
+        strengthLabel.style.color = str.color;
+        strengthFill.style.width = str.pct + '%';
+        strengthFill.style.backgroundColor = str.color;
+      });
+
+      // Phone formatting: numbers only
+      inputPhone.addEventListener('input', function () {
+        inputPhone.value = inputPhone.value.replace(/[^0-9]/g, '').slice(0, 10);
+      });
+
+      // Helper: Show Alert
+      function showError(elText, elBox, message) {
+        elText.textContent = message;
+        elBox.className = 'alert-box error';
+        elBox.style.display = 'flex';
+      }
+      function clearAlert(elBox) {
+        elBox.style.display = 'none';
+      }
+
+      // Step Switcher
+      function setStep(step) {
+        stepRegister.classList.remove('active');
+        stepVerify.classList.remove('active');
+        stepSuccess.classList.remove('active');
+
+        if (step === 'register') {
+          stepRegister.classList.add('active');
+        } else if (step === 'verify') {
+          stepVerify.classList.add('active');
+          displayVerifyEmail.textContent = currentEmail;
+          otpInputs[0].focus();
+          startCooldown(60);
+        } else if (step === 'success') {
+          stepSuccess.classList.add('active');
+        }
+      }
+
+      btnBack.addEventListener('click', function () {
+        setStep('register');
+      });
+
+      // Cooldown Timer
+      function startCooldown(seconds) {
+        if (cooldownInterval) clearInterval(cooldownInterval);
+        currentCooldown = seconds;
+        resendCooldownText.style.display = 'inline-flex';
+        btnResendOtp.style.display = 'none';
+        resendTimerSeconds.textContent = currentCooldown;
+
+        cooldownInterval = setInterval(function () {
+          currentCooldown--;
+          if (currentCooldown <= 0) {
+            clearInterval(cooldownInterval);
+            resendCooldownText.style.display = 'none';
+            btnResendOtp.style.display = 'inline-flex';
+          } else {
+            resendTimerSeconds.textContent = currentCooldown;
+          }
+        }, 1000);
+      }
+
+      // ----------------------------------------------------
+      // HANDLE REGISTRATION SUBMIT
+      // ----------------------------------------------------
+      registerForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        clearAlert(regAlert);
+
+        var fullName = inputFullName.value.trim();
+        var restaurantName = inputRestaurant.value.trim();
+        var email = inputEmail.value.toLowerCase().trim();
+        var phone = inputPhone.value.trim();
+        var password = inputPassword.value;
+        var confirmPassword = inputConfirm.value;
+
+        // Validation
+        if (!fullName || fullName.length < 2) {
+          showError(regAlertText, regAlert, 'Please enter your full name (at least 2 characters)');
+          inputFullName.focus();
+          return;
+        }
+        if (!restaurantName) {
+          showError(regAlertText, regAlert, 'Please enter your restaurant name');
+          inputRestaurant.focus();
+          return;
+        }
+        var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRe.test(email)) {
+          showError(regAlertText, regAlert, 'Please enter a valid email address');
+          inputEmail.focus();
+          return;
+        }
+        var phoneRe = /^[6-9]\d{9}$/;
+        if (!phone || !phoneRe.test(phone)) {
+          showError(regAlertText, regAlert, 'Please enter a valid 10-digit Indian mobile number');
+          inputPhone.focus();
+          return;
+        }
+        if (!password || password.length < 8) {
+          showError(regAlertText, regAlert, 'Password must be at least 8 characters long');
+          inputPassword.focus();
+          return;
+        }
+        if (!/[A-Z]/.test(password)) {
+          showError(regAlertText, regAlert, 'Password must include at least one uppercase letter');
+          inputPassword.focus();
+          return;
+        }
+        if (!/[0-9]/.test(password)) {
+          showError(regAlertText, regAlert, 'Password must include at least one number');
+          inputPassword.focus();
+          return;
+        }
+        if (password !== confirmPassword) {
+          showError(regAlertText, regAlert, 'Passwords do not match');
+          inputConfirm.focus();
+          return;
+        }
+        if (!inputTerms.checked) {
+          showError(regAlertText, regAlert, 'Please accept the Terms of Service to proceed');
+          return;
+        }
+
+        // Send to /api/auth/register
+        btnCreate.disabled = true;
+        regSpinner.style.display = 'inline-block';
+        regArrow.style.display = 'none';
+        btnCreateText.textContent = 'Creating Account...';
+
+        try {
+          var res = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fullName: fullName,
+              restaurantName: restaurantName,
+              email: email,
+              phone: phone,
+              password: password,
+            }),
+          });
+
+          var data = await res.json().catch(function () { return {}; });
+
+          if (!res.ok) {
+            showError(regAlertText, regAlert, data.error || 'Failed to create account. Please try again.');
+            btnCreate.disabled = false;
+            regSpinner.style.display = 'none';
+            regArrow.style.display = 'inline-block';
+            btnCreateText.textContent = 'Create Account';
+            return;
+          }
+
+          currentEmail = email;
+          setStep('verify');
+        } catch (err) {
+          showError(regAlertText, regAlert, 'Network error. Please check your connection and try again.');
+        } finally {
+          btnCreate.disabled = false;
+          regSpinner.style.display = 'none';
+          regArrow.style.display = 'inline-block';
+          btnCreateText.textContent = 'Create Account';
+        }
+      });
+
+      // ----------------------------------------------------
+      // OTP DIGIT INPUT HANDLING
+      // ----------------------------------------------------
+      otpInputs.forEach(function (inp, idx) {
+        inp.addEventListener('input', function (e) {
+          clearAlert(verifyAlert);
+          var val = inp.value.replace(/[^0-9]/g, '');
+
+          // If pasted multi-digit code
+          if (val.length > 1) {
+            var digits = val.slice(0, 6).split('');
+            digits.forEach(function (d, i) {
+              if (otpInputs[i]) otpInputs[i].value = d;
+            });
+            var focusIdx = Math.min(digits.length, 5);
+            otpInputs[focusIdx].focus();
+            return;
+          }
+
+          inp.value = val;
+          if (val && idx < 5) {
+            otpInputs[idx + 1].focus();
+          }
+        });
+
+        inp.addEventListener('keydown', function (e) {
+          if (e.key === 'Backspace' && !inp.value && idx > 0) {
+            otpInputs[idx - 1].focus();
+          }
+        });
+
+        // Paste support
+        inp.addEventListener('paste', function (e) {
+          e.preventDefault();
+          var pasteData = (e.clipboardData || window.clipboardData).getData('text');
+          var digits = pasteData.replace(/[^0-9]/g, '').slice(0, 6).split('');
+          digits.forEach(function (d, i) {
+            if (otpInputs[i]) otpInputs[i].value = d;
+          });
+          var focusIdx = Math.min(digits.length, 5);
+          otpInputs[focusIdx].focus();
+        });
+      });
+
+      // ----------------------------------------------------
+      // HANDLE VERIFY OTP SUBMIT
+      // ----------------------------------------------------
+      otpForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        clearAlert(verifyAlert);
+
+        var enteredOtp = otpInputs.map(function (i) { return i.value; }).join('');
+        if (enteredOtp.length !== 6) {
+          showError(verifyAlertText, verifyAlert, 'Please enter all 6 digits of your verification code');
+          return;
+        }
+
+        btnVerify.disabled = true;
+        verifySpinner.style.display = 'inline-block';
+        verifyArrow.style.display = 'none';
+        btnVerifyText.textContent = 'Verifying Code...';
+
+        try {
+          var res = await fetch('/api/auth/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: currentEmail,
+              otp: enteredOtp,
+            }),
+          });
+
+          var data = await res.json().catch(function () { return {}; });
+
+          if (!res.ok) {
+            showError(verifyAlertText, verifyAlert, data.error || 'Invalid verification code. Please check and try again.');
+            btnVerify.disabled = false;
+            verifySpinner.style.display = 'none';
+            verifyArrow.style.display = 'inline-block';
+            btnVerifyText.textContent = 'Verify & Complete Registration';
+            return;
+          }
+
+          setStep('success');
+        } catch (err) {
+          showError(verifyAlertText, verifyAlert, 'Network error. Please try again.');
+        } finally {
+          btnVerify.disabled = false;
+          verifySpinner.style.display = 'none';
+          verifyArrow.style.display = 'inline-block';
+          btnVerifyText.textContent = 'Verify & Complete Registration';
+        }
+      });
+
+      // ----------------------------------------------------
+      // HANDLE RESEND OTP
+      // ----------------------------------------------------
+      btnResendOtp.addEventListener('click', async function () {
+        if (currentCooldown > 0) return;
+        clearAlert(verifyAlert);
+
+        btnResendOtp.disabled = true;
+        btnResendOtp.textContent = 'Sending new code...';
+
+        try {
+          var res = await fetch('/api/auth/resend-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentEmail }),
+          });
+
+          var data = await res.json().catch(function () { return {}; });
+
+          if (!res.ok) {
+            showError(verifyAlertText, verifyAlert, data.error || 'Failed to resend code');
+            btnResendOtp.disabled = false;
+            btnResendOtp.textContent = 'Resend Verification Code';
+            return;
+          }
+
+          // Clear existing digits
+          otpInputs.forEach(function (i) { i.value = ''; });
+          otpInputs[0].focus();
+          startCooldown(60);
+        } catch (err) {
+          showError(verifyAlertText, verifyAlert, 'Failed to resend code. Please try again.');
+          btnResendOtp.disabled = false;
+          btnResendOtp.textContent = 'Resend Verification Code';
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

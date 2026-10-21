@@ -1,0 +1,6 @@
+/signup /signup.html 200
+/signup/ /signup.html 200
+/register /signup.html 302
+/register/ /signup.html 302
+/login /login.html 200
+/login/ /login.html 200
