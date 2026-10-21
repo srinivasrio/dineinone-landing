@@ -876,8 +876,9 @@
         regArrow.style.display = 'none';
         btnCreateText.textContent = 'Creating Account...';
 
+        var API_BASE = 'https://app.dineinone.com';
         try {
-          var res = await fetch('/api/auth/register', {
+          var res = await fetch(API_BASE + '/api/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -974,8 +975,9 @@
         verifyArrow.style.display = 'none';
         btnVerifyText.textContent = 'Verifying Code...';
 
+        var API_BASE = 'https://app.dineinone.com';
         try {
-          var res = await fetch('/api/auth/verify-otp', {
+          var res = await fetch(API_BASE + '/api/auth/verify-otp', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -1016,8 +1018,9 @@
         btnResendOtp.disabled = true;
         btnResendOtp.textContent = 'Sending new code...';
 
+        var API_BASE = 'https://app.dineinone.com';
         try {
-          var res = await fetch('/api/auth/resend-otp', {
+          var res = await fetch(API_BASE + '/api/auth/resend-otp', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: currentEmail }),
