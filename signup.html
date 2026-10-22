@@ -3,6 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+    location.replace('https:' + location.href.substring(5));
+  }
+  </script>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Sign Up — Dine in One</title>
   <meta name="description" content="Create your Dine in One owner account to get started with your restaurant management workspace.">
   <link rel="canonical" href="https://dineinone.com/signup">

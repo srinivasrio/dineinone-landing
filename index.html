@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+  location.replace('https:' + location.href.substring(5));
+}
+</script>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <title>Dine in One — AI Restaurant Operating System & Self-Ordering Platform</title>
 <meta name="description" content="Dine in One is an AI-powered Restaurant Operating System connecting dine-in, takeaway, and delivery. Features contactless QR ordering, live Kitchen Display System (KDS), POS billing, and real-time analytics.">
 <meta name="keywords" content="Dine in One, DineInOne, restaurant operating system, restaurant POS, QR code ordering, kitchen display system, KDS, restaurant billing software, restaurant management Nellore">
