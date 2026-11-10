@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-31QEQHXNV5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-31QEQHXNV5');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
@@ -935,6 +944,9 @@
           }
 
           currentEmail = email;
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'begin_registration', { method: 'email' });
+          }
           setStep('verify');
         } catch (err) {
           showError(regAlertText, regAlert, 'Network error. Please check your connection and try again.');
@@ -1030,6 +1042,9 @@
             return;
           }
 
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'sign_up', { method: 'email' });
+          }
           setStep('success');
         } catch (err) {
           showError(verifyAlertText, verifyAlert, 'Network error. Please try again.');

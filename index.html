@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-31QEQHXNV5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-31QEQHXNV5');
+
+  // Track important user interactions
+  document.addEventListener('click', function(e) {
+    var target = e.target && e.target.closest ? e.target.closest('a') : null;
+    if (!target) return;
+    var href = target.getAttribute('href') || '';
+    if (href.indexOf('wa.me') !== -1) {
+      gtag('event', 'contact', { method: 'WhatsApp', event_label: 'WhatsApp Chat Click' });
+    } else if (href.indexOf('tel:') !== -1) {
+      gtag('event', 'contact', { method: 'Phone', event_label: 'Phone Call Click' });
+    } else if (href === '/signup' || href.indexOf('/signup') !== -1) {
+      gtag('event', 'select_content', { content_type: 'CTA Button', item_id: 'Signup' });
+    }
+  });
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
@@ -2373,6 +2396,13 @@ class Component extends DCLogic {
           }
 
           if (saved) {
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'generate_lead', {
+                event_category: 'Demo Form',
+                event_label: plan || 'Book Free Demo',
+                value: 1
+              });
+            }
             this.setState({ submitting: false, sent: true, sentName: firstName, error: '' });
           } else {
             throw new Error('Submission could not be completed');
