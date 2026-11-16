@@ -31,6 +31,7 @@ export async function onRequestPost(context) {
     const email = String(body.email || '').trim();
     const planInterest = String(body.plan || body.plan_interest || 'Not sure yet').trim();
     const tablesCount = Math.max(1, parseInt(body.tables || body.tables_count || '1', 10) || 1);
+    const message = String(body.message || body.notes || '').trim();
 
     if (!name || !restaurantName || !phone) {
       return new Response(JSON.stringify({ error: 'Name, Restaurant name, and Phone number are required' }), {
@@ -39,7 +40,7 @@ export async function onRequestPost(context) {
       });
     }
 
-    // 1. Insert directly into live Supabase demo_requests table
+    // 1. Insert directly into live Supabase demo_requests table (triggers automated SES email dispatch)
     const supaUrl = 'https://jmcsygpphwdubnanwjwz.supabase.co/rest/v1/demo_requests';
     const supaKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptY3N5Z3BwaHdkdWJuYW53and6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyMjUyMTIsImV4cCI6MjA4NTgwMTIxMn0.uQyoWluprn9Gr-ypserxqF9WM_85MWUMAO7Uch1jN14';
 
@@ -58,6 +59,7 @@ export async function onRequestPost(context) {
         email: email || null,
         plan_interest: planInterest,
         tables_count: tablesCount,
+        message: message || null,
         status: 'new',
       }),
     });

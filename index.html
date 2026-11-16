@@ -2337,6 +2337,7 @@ class Component extends DCLogic {
         const email = String(fd.get('email') || '').trim();
         const plan = String(fd.get('plan') || '').trim();
         const tables = parseInt(String(fd.get('tables') || '1'), 10) || 1;
+        const message = String(fd.get('message') || '').trim();
 
         if (!name || !restaurant || !phone) {
           this.setState({ error: 'Please enter your name, restaurant name, and phone number.' });
@@ -2346,7 +2347,7 @@ class Component extends DCLogic {
         const firstName = name.split(' ')[0] || 'there';
         this.setState({ submitting: true, error: '' });
 
-        const payload = { name, restaurant, phone, email, plan, tables };
+        const payload = { name, restaurant, phone, email, plan, tables, message: message || null };
         const apiUrl = window.DINE_IN_ONE_API_URL 
           ? `${window.DINE_IN_ONE_API_URL.replace(/\/$/, '')}/api/contact/demo-request`
           : '/api/contact/demo-request';
@@ -2385,6 +2386,7 @@ class Component extends DCLogic {
                 email: email || null,
                 plan_interest: plan,
                 tables_count: tables,
+                message: message || null,
                 status: 'new'
               })
             });
